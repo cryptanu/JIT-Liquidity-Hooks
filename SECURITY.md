@@ -11,7 +11,7 @@ Contracts in `src/` are in scope:
 
 ## Reporting
 Please report vulnerabilities privately to:
-- email: `jesuorobonosakhare873@gmail.com`
+- email: `cryptanu@users.noreply.github.com` (or open a private security advisory on GitHub)
 
 Include:
 - affected contract/function

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-EXPECTED_COUNT=300
-EXPECTED_AUTHOR="najnomics"
-EXPECTED_EMAIL="jesuorobonosakhare873@gmail.com"
+EXPECTED_COUNT=50
+EXPECTED_AUTHOR="Cryptanu"
+EXPECTED_EMAIL="cryptanu@users.noreply.github.com"
 
 COUNT="$(git rev-list --count HEAD)"
 if [[ "$COUNT" -ne "$EXPECTED_COUNT" ]]; then
