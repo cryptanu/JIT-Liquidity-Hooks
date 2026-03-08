@@ -1,0 +1,12 @@
+{
+  "name": "jit-liquidity-issuance-hook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Uniswap v4 deterministic launch-phase JIT liquidity hook monorepo",
+  "scripts": {
+    "frontend:serve": "python3 -m http.server 4173 --directory frontend",
+    "abi:export": "./scripts/export_abis.sh",
+    "demo:local": "./scripts/demo_local.sh",
+    "demo:testnet": "./scripts/demo_testnet.sh"
+  }
+}
