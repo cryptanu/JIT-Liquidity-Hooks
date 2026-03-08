@@ -1,0 +1,240 @@
+:root {
+  --bg-a: #0b132b;
+  --bg-b: #102a43;
+  --ink: #e6edf6;
+  --muted: #8ea2bd;
+  --line: #24405f;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --card: rgba(7, 20, 42, 0.72);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Space Grotesk", sans-serif;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(12, 170, 244, 0.16), transparent 60%),
+    radial-gradient(700px 700px at 100% 0%, rgba(34, 197, 94, 0.16), transparent 60%),
+    linear-gradient(150deg, var(--bg-a), var(--bg-b));
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px clamp(18px, 4vw, 44px);
+  align-items: flex-start;
+}
+
+.hero h1 {
+  margin: 6px 0;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 720px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  color: #7fd3ff;
+}
+
+.hero__marks {
+  display: grid;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  gap: 14px;
+  padding: 0 clamp(18px, 4vw, 44px) 30px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(5px);
+  padding: 16px;
+}
+
+.card--wide {
+  grid-column: span 2;
+}
+
+h2 {
+  margin-top: 4px;
+  margin-bottom: 14px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #a8ddff;
+}
+
+.form-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+input {
+  border: 1px solid #315272;
+  border-radius: 10px;
+  background: #0d1e39;
+  color: var(--ink);
+  padding: 9px 10px;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.actions {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+button {
+  border: 0;
+  border-radius: 11px;
+  padding: 10px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  background: linear-gradient(130deg, #6ad0ff, #56ffa3);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.mono {
+  margin-top: 10px;
+  min-height: 120px;
+  background: #071322;
+  border-radius: 12px;
+  border: 1px solid #1f3651;
+  padding: 10px;
+  overflow: auto;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+}
+
+.phase-line {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.phase {
+  border: 1px solid #2f4c68;
+  background: #0a1a31;
+  border-radius: 999px;
+  text-align: center;
+  padding: 8px 10px;
+  color: var(--muted);
+}
+
+.phase.active {
+  color: white;
+  background: #144b32;
+  border-color: #2bc27d;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.metrics div {
+  border: 1px solid #234360;
+  border-radius: 12px;
+  padding: 10px;
+  background: #0a1c34;
+}
+
+.metrics span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metrics strong {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1rem;
+}
+
+canvas {
+  width: 100%;
+  border: 1px solid #274967;
+  border-radius: 14px;
+  background: #071524;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid #203d5a;
+  padding: 10px 8px;
+  font-size: 0.88rem;
+}
+
+th {
+  color: #9fd7ff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 920px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card--wide {
+    grid-column: span 1;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid,
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+}
