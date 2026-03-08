@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>JIT Launch Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow">Launch Console</p>
+        <h1>JIT Liquidity & Issuance Hook</h1>
+        <p>Deterministic launch phases, bounded JIT activation, and no-keeper launch simulation for judges.</p>
+      </div>
+      <div class="hero__marks">
+        <img src="../assets/uniswap-v4-mark.svg" alt="Uniswap v4" />
+        <img src="../assets/jit-launch-mark.svg" alt="JIT Launch" />
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>1. Configure Launch</h2>
+        <div class="form-grid">
+          <label>Start Block<input id="startBlock" type="number" value="100" /></label>
+          <label>Prelaunch Blocks<input id="preLaunchBlocks" type="number" value="3" /></label>
+          <label>Launch Blocks<input id="launchBlocks" type="number" value="12" /></label>
+          <label>Initial Max In<input id="initialMaxIn" type="number" value="1" step="0.1" /></label>
+          <label>Steady Max In<input id="steadyMaxIn" type="number" value="3" step="0.1" /></label>
+          <label>Max Impact Bps<input id="maxImpact" type="number" value="1000" /></label>
+          <label>JIT Band Width<input id="bandWidth" type="number" value="120" /></label>
+          <label>JIT Usage/Action<input id="jitUsage" type="number" value="1" step="0.1" /></label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. Deploy + Init</h2>
+        <div class="actions">
+          <button id="deployBtn">Deploy Stack</button>
+          <button id="initBtn">Init Pools + Seed</button>
+          <button id="runBtn">Run Demo Swaps</button>
+          <button id="steadyBtn">Advance To Steady</button>
+        </div>
+        <pre id="addressLog" class="mono"></pre>
+      </section>
+
+      <section class="card card--wide">
+        <h2>3. Phase + Outcome Monitor</h2>
+        <div class="phase-line">
+          <div class="phase" id="phasePre">Prelaunch</div>
+          <div class="phase" id="phaseLaunch">Launch Discovery</div>
+          <div class="phase" id="phaseSteady">Steady State</div>
+        </div>
+        <div class="metrics">
+          <div><span>Current Block</span><strong id="blockVal">100</strong></div>
+          <div><span>Phase</span><strong id="phaseVal">Prelaunch</strong></div>
+          <div><span>Blocked (JIT)</span><strong id="blockedVal">0</strong></div>
+          <div><span>Max Slippage Delta</span><strong id="slipVal">0 bps</strong></div>
+        </div>
+        <canvas id="slippageChart" width="900" height="280"></canvas>
+      </section>
+
+      <section class="card card--wide">
+        <h2>4. Swap Log</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Amount In</th>
+              <th>Baseline Price</th>
+              <th>JIT Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="swapRows"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
