@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+env:
+  FOUNDRY_PROFILE: ci
+
+jobs:
+  test:
+    name: Foundry Build/Test/Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+
+      - name: Bootstrap + Dependency Integrity
+        run: |
+          chmod +x scripts/bootstrap.sh scripts/export_abis.sh
+          ./scripts/bootstrap.sh
+          test "$(git -C lib/uniswap-hooks/lib/v4-periphery rev-parse HEAD)" = "3779387e5d296f39df543d23524b050f89a62917"
+
+      - name: Lint
+        run: |
+          forge fmt --check
+
+      - name: Build
+        run: |
+          forge --version
+          forge build --sizes
+        id: build
+
+      - name: Test
+        run: |
+          forge test -vvv
+        id: test
+
+      - name: Coverage
+        run: |
+          forge coverage --report summary
+
+      - name: ABI Sync Check
+        run: |
+          ./scripts/export_abis.sh
+          git diff --exit-code shared/abis shared/types
